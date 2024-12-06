@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using BuildingBlocks.CQRS;
 
 namespace Catalog.API.Products.CreateProduct
 {
@@ -8,5 +8,5 @@ namespace Catalog.API.Products.CreateProduct
         string Description,
         string ImageFile,
         decimal Price
-    ) : IRequest<CreateProductResult>;
+    ) : ICommand<CreateProductResult>;
 }
