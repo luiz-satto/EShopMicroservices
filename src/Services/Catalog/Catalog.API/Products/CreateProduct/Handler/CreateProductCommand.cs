@@ -1,6 +1,6 @@
 ﻿using BuildingBlocks.CQRS;
 
-namespace Catalog.API.Products.CreateProduct
+namespace Catalog.API.Products.CreateProduct.Handler
 {
     public record CreateProductCommand(
         string Name,
