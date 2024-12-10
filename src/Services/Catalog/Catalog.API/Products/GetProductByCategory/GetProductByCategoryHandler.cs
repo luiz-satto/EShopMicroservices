@@ -14,7 +14,7 @@
 
             var products = await session.Query<Product>()
                 .Where(p => p.Category.Contains(query.Category))
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
             return new GetProductByCategoryResult(products);
         }
