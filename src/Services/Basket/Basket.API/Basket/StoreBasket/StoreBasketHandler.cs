@@ -12,7 +12,8 @@
         }
     }
 
-    internal class StoreBasketCommandHandler : ICommandHandler<StoreBasketCommand, StoreBasketResult>
+    internal class StoreBasketCommandHandler 
+        : ICommandHandler<StoreBasketCommand, StoreBasketResult>
     {
         public async Task<StoreBasketResult> Handle(StoreBasketCommand request, CancellationToken cancellationToken)
         {
