@@ -7,31 +7,25 @@
         public async Task<ShoppingCart> GetBasket(string userName, CancellationToken cancellationToken = default)
         {
             var basket = await session.LoadAsync<ShoppingCart>(userName, cancellationToken);
-            if (basket is null)
-            {
-                throw new BasketNotFoundException(userName);
-            }
-
-            return basket;
+            return basket is null
+                ? throw new BasketNotFoundException(userName)
+                : basket;
         }
 
         public async Task<ShoppingCart> StoreBasket(ShoppingCart basket, CancellationToken cancellationToken = default)
         {
             session.Store(basket);
-            await session.SaveChangesAsync();
+            await session.SaveChangesAsync(cancellationToken);
             return basket;
         }
 
         public async Task<bool> DeleteBasket(string userName, CancellationToken cancellationToken = default)
         {
-            var basket = await session.LoadAsync<ShoppingCart>(userName, cancellationToken);
-            if (basket is null)
-            {
-                throw new BasketNotFoundException(userName);
-            }
+            _= await session.LoadAsync<ShoppingCart>(userName, cancellationToken) 
+                ?? throw new BasketNotFoundException(userName);
 
             session.Delete(userName);
-            await session.SaveChangesAsync();
+            await session.SaveChangesAsync(cancellationToken);
             return true;
         }
     }
