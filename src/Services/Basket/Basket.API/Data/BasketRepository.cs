@@ -24,7 +24,7 @@
             _= await session.LoadAsync<ShoppingCart>(userName, cancellationToken) 
                 ?? throw new BasketNotFoundException(userName);
 
-            session.Delete(userName);
+            session.Delete<ShoppingCart>(userName);
             await session.SaveChangesAsync(cancellationToken);
             return true;
         }
