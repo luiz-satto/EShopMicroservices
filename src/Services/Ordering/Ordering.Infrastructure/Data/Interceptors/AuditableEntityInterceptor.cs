@@ -25,7 +25,7 @@ namespace Ordering.Infrastructure.Data.Interceptors
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Entity.CreatedBy = "Luiz Satto";
+                    entry.Entity.CreatedBy = "luiz-satto";
                     entry.Entity.CreatedAt = DateTime.UtcNow;
                 }
 
@@ -33,7 +33,7 @@ namespace Ordering.Infrastructure.Data.Interceptors
                     entry.State == EntityState.Modified || 
                     entry.HasChangedOwnedEntities())
                 {
-                    entry.Entity.LastModifiedBy = "Luiz Satto";
+                    entry.Entity.LastModifiedBy = "luiz-satto";
                     entry.Entity.LastModified = DateTime.UtcNow;
                 }
             }
