@@ -19,7 +19,7 @@ app.UseApiServices();
 
 if (app.Environment.IsDevelopment())
 {
-    app.InitializeDatabase();
+    app.InitializeDatabaseAsync();
 }
 #endregion
 
