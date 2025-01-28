@@ -1,6 +1,7 @@
 using Ordering.API;
 using Ordering.Application;
 using Ordering.Infrastructure;
+using Ordering.Infrastructure.Data.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,11 +10,17 @@ builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration)
     .AddApiServices();
+#endregion
 
 var app = builder.Build();
-#endregion
 
 #region Configure the HTTP request pipeline
 app.UseApiServices();
-app.Run();
+
+if (app.Environment.IsDevelopment())
+{
+    app.InitializeDatabase();
+}
 #endregion
+
+app.Run();
